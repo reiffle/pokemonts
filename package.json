@@ -1,0 +1,29 @@
+{
+  "name": "pokemonts",
+  "version": "1.0.0",
+  "description": "Pokedex Project written in Typescript Node version 22.15.0",
+  "main": "index.js",
+  "type": "modeule",
+  "scripts": {
+    "test": "vitest --run",
+    "build": "npx tsc",
+    "start": "node dist/main.js",
+    "dev": "npx tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reiffle/pokemonts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reiffle/pokemonts/issues"
+  },
+  "homepage": "https://github.com/reiffle/pokemonts#readme",
+  "devDependencies": {
+    "@types/node": "^25.0.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}

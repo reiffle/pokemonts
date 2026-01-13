@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Pokedex Project written in Typescript Node version 22.15.0",
   "main": "index.js",
-  "type": "modeule",
+  "type": "module",
   "scripts": {
     "test": "vitest --run",
     "build": "npx tsc",

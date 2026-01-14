@@ -1,11 +1,12 @@
 //can import directly bc of "type": "module" in package.json
 import { createInterface } from "readline";
+import { getcommands } from "./cli_command.js";
 
 export function startREPL() {
 
   //define key/value pairs
   const rl = createInterface({
-      input: process.stdin,
+    input: process.stdin,
     output: process.stdout,
     prompt: "Pokedex > ",
   });
@@ -15,7 +16,17 @@ export function startREPL() {
   rl.on('line', (line:string) => {
     let x = cleanInput(line);
     if (x.length>0) {
-      console.log(`Your command was: ${x[0]}`);
+      const command = x[0]
+      const commands = getcommands();
+      const cmd = commands[command];
+      if(cmd && typeof cmd.callback==='function') {
+        cmd.callback(commands);
+        }  
+      else {
+        console.log(`Unknown command: ${command}`);
+      }
+      //put stuff here
+
     }
     rl.prompt();
   });

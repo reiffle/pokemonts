@@ -1,26 +1,16 @@
 //can import directly bc of "type": "module" in package.json
-import { createInterface } from "readline";
-import { getcommands } from "./cli_command.js";
+import { State } from "./state.js";
 
-export function startREPL() {
-
-  //define key/value pairs
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    prompt: "Pokedex > ",
-  });
-
-  //Once the readline.Interface instance is created, the most common case is to listen for the 'line' event:
-  rl.prompt(); //display prompt and wait for user input
-  rl.on('line', (line:string) => {
+export function startREPL(state: State) {
+  state.readline.prompt();
+  state.readline.on('line', (line:string) => {
     let x = cleanInput(line);
     if (x.length>0) {
       const command = x[0]
-      const commands = getcommands();
+      const commands = state.commands;
       const cmd = commands[command];
       if(cmd && typeof cmd.callback==='function') {
-        cmd.callback(commands);
+        cmd.callback(state);
         }  
       else {
         console.log(`Unknown command: ${command}`);
@@ -28,7 +18,7 @@ export function startREPL() {
       //put stuff here
 
     }
-    rl.prompt();
+    state.readline.prompt();
   });
 }
 
